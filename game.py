@@ -10,6 +10,7 @@ def slow_print(text, delay=0.06):
 
 
 def end_game():
+    print("YOU ARE DIE.")
     print("Thanks for playing")
     exit()
 
@@ -45,44 +46,45 @@ if door == "1":
         "damage": random.randint(20, 30)
     }
 
+    def show_stats():
+        slow_print("stats:")
+        slow_print(f"player HP: {player['health']}")
+        slow_print(f"monster HP: {monster['health']}")
+        slow_print(f"bullets left: {gun['bullets']}")
+
     while True:
-        slow_print("monster stats:\n")
-        slow_print(f"health: {monster.get('health')}\n\n")
-        slow_print("player health: 100")
+        show_stats()
 
         choice = input("What do you want to do? (1, 2, or 3): ")
 
         if choice == "1":
             slow_print("You choose to attack the monster.")
             while True:
-                print(f"bullet damage: {gun.get('damage')}")
+                print(f"bullet damage: {gun['damage']}")
                 key = input("press f to fire a shot at the monster: ")
                 if key == "f":
                     print("BLAM")
                     gun['bullets'] -= 1
-                    slow_print("Reloading...")
-                    slow_print("")
-
-                    damage = gun.get('damage')
+                    slow_print("Reloading...\n")
+                    damage = gun['damage']
                     monster['health'] -= damage
-                    slow_print("the monster attacks you")
-                    player['health'] -= monster.get('damage')
-                    slow_print(f"your health:{player.get('health')}")
-                    if gun.get('damage') == 0:
+                    if monster['health'] <= 0:
+                        slow_print("monster is dead")
+                        break
+                    else:
+                        slow_print(f"Monster Health: {monster['health']}")
+                        slow_print(f"Bullets: {gun['bullets']}")
+                        slow_print("the monster attacks you")
+                    if gun["bullets"] == 0:
                         print("you are out of bullets")
                         slow_print("the monster attacks you and you die")
+                        end_game()
+                    player['health'] -= monster["damage"]
+                    if player['health'] <= 0:
                         end_game()
 
                 else:
                     print("invalid input. press f to shoot the monster")
-
-                if monster.get('health') > 0:
-                    slow_print(f"Monster Health: {monster['health']}")
-                    slow_print(f"Bullets: {gun['bullets']}")
-                else:
-                    slow_print("monster is dead")
-                    slow_print(f"Bullets: {gun['bullets']}")
-                    break
 
         elif choice == "2":
             slow_print(
