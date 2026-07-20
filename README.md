@@ -1,11 +1,20 @@
-Adventure Game (Python)
+Python Adventure Game
 
-Features:
+A text-based adventure game built while learning Python.
+
+## Features
+
 - Turn-based combat
-- Inventory system
-- Weapon stats
-- Monster health
-- Slow-print dialogue
+- Random monster damage
+- Player health system
+- Ammo system
 - Multiple endings
+- Slow text animation
 
-Built while learning Python.
+## Concepts Practiced
+
+- Functions
+- Dictionaries
+- Lists
+- While loops
+- If statements
